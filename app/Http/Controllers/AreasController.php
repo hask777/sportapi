@@ -14,27 +14,18 @@ class AreasController extends Controller
      */
     public function index()
     {
-        // $areasArray = Http::withHeaders(['Ocp-Apim-Subscription-Key'=>'f7b0c7419d204f299f59e646b45ca563'])->get('https://api.sportsdata.io/v3/soccer/scores/json/Areas')->json();
-
 
         $areas = Http::withHeaders(['Ocp-Apim-Subscription-Key'=>'f7b0c7419d204f299f59e646b45ca563'])->get('https://api.sportsdata.io/v3/soccer/scores/json/Areas')->json();
         // dd($areasArray);
 
-        // $comps = collect($areas)->mapWithKeys(function($comp){
-        //     return  [
-        //                // $comp['Competitions'] => $comp['Competitions'][0],
-        //                 // $area['Name'] => $area['Competitions']
-        //             ];
-        // });
-
         foreach($areas as $area){
             if(!empty($area['Competitions'])){
-                // dump($area['Competitions']);
+                // dd($area['Competitions']);
                 foreach($area['Competitions'] as $competition){
                     // dump($competition['Seasons']['Rounds']);
                     // dump($competition['Seasons']);
                     foreach($competition['Seasons'] as $seasons){               
-                        // dump($seasons);
+                        // dd($seasons);
                         foreach($seasons['Rounds'] as $round){
                             // dump($round);
                         }              
@@ -46,10 +37,10 @@ class AreasController extends Controller
         // dd($areas);
         
         return  view('area', 
-        [
-            // 'areasArray' => $areasArray,
-            'areas' => $areas,
-        ]);
+            [
+                'areas' => $areas,
+            ]
+        );
     }
 
     /**
@@ -81,7 +72,6 @@ class AreasController extends Controller
      */
     public function show($id)
     {
-
         $areasArray = Http::withHeaders(['Ocp-Apim-Subscription-Key'=>'f7b0c7419d204f299f59e646b45ca563'])->get('https://api.sportsdata.io/v3/soccer/scores/json/Areas')->json();
 
         if(!empty($_GET['area_id'])){
@@ -124,18 +114,42 @@ class AreasController extends Controller
             $comp_key = $_GET['comp_key'];      
         }
 
-        // if(!empty($_GET['seasons'])){  
-        //     $seasons = $_GET['seasons'];      
-        // }
+        if(!empty($_GET['season_Id'])){  
+            $season_id = $_GET['season_Id'];      
+        }
 
+        if(!empty($_GET['season_year'])){  
+            $season_year = $_GET['season_year'];      
+        }
 
+        if(!empty($_GET['start_date'])){  
+            $start_date = $_GET['start_date'];      
+        } 
+
+        if(!empty($_GET['end_date'])){  
+            $end_date = $_GET['end_date'];      
+        }
+       
+        if(!empty($_GET['current_season'])){  
+            $current_season = $_GET['current_season'];      
+        } 
+        
+        //competitions
         dump('competition id:' . $comp_id);
         dump('competition name:' . $comp_name);
         dump('competition gender:' . $comp_gender);
         dump('competition type:' . $comp_type);
         dump('competition format:' . $comp_format);
         dump('competition key:' . $comp_key);
-
+        //season
+        dump('season id:' . $season_id);
+        dump('season:' . $season_year);
+        dump('start date:' . $start_date);
+        dump('end date:' . $end_date);
+        if(!empty($_GET['current_season']) && $_GET['current_season'] != 0){
+            dump('current season:' . $current_season);
+        }
+        
 
         // $competition = Http::withHeaders(['Ocp-Apim-Subscription-Key'=>'f7b0c7419d204f299f59e646b45ca563'])->get('https://api.sportsdata.io/v3/soccer/scores/json/CompetitionDetails/' . $area_id)->json();
 

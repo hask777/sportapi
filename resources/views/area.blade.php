@@ -19,21 +19,30 @@
                     $comp_format = $competition['Format'];
                     $comp_key = $competition['Key'];
                     // Competition's season is array
-                    foreach($competition['Seasons'] as $seasons){
+                    foreach($competition['Seasons'] as $season){
                         // echo '<pre>';
                         //     var_dump($season);
                         // echo '</pre>';
+
                         // SeasonId
+                        $season_Id = $season['SeasonId'];
                         // CompetitionId
+                        $competition_Id = $season['CompetitionId'];
                         // Season
+                        $season_year = $season['Season'];
                         // Name
+                        $season_name = $season['Name'];
                         // CompetitionName
+                        $comp_name = $season['CompetitionName'];
                         // StartDate
+                        $start_date = $season['StartDate'];
                         // EndDate
-                        // CurrentSeason
+                        $end_date = $season['EndDate'];
+                        // CurrentSeason                        
+                        $current_season = $season['CurrentSeason'];
+                        
                         // Rounds is Array
-   
-                        foreach($seasons['Rounds'] as $rounds){
+                        foreach($season['Rounds'] as $rounds){
                             // echo '<pre>';
                             //     var_dump($rounds);
                             // echo '</pre>';
@@ -48,18 +57,27 @@
                             // CurrentWeek
                             // CurrentRound
                         }
+                        
                     }               
                 @endphp
                 
             @endforeach
 
+            {{-- Competitions --}}
             <input type="hidden" name="comp_id" value="{{ $comp_id }}">
             <input type="hidden" name="comp_name" value="{{ $comp_name }}">
             <input type="hidden" name="comp_gender" value="{{ $comp_gender }}">
             <input type="hidden" name="comp_type" value="{{ $comp_type }}">
             <input type="hidden" name="comp_format" value="{{ $comp_format }}">
             <input type="hidden" name="comp_key" value="{{ $comp_key }}">
-            {{-- <input type="hidden" name="seasons" value="{{ $seasons }}"> --}}
+
+            {{-- Seasons --}}
+            <input type="hidden" name="season_Id" value="{{ $season_Id }}">
+            <input type="hidden" name="season_year" value="{{ $season_year }}">
+            <input type="hidden" name="start_date" value="{{ $start_date }}">
+            <input type="hidden" name="end_date" value="{{ $end_date }}">
+            <input type="hidden" name="current_season" value="{{ $current_season }}">
+            
 
 
             <button type="submit">{{ $area['Name'] }}</button>
