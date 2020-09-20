@@ -1,3 +1,5 @@
+@extends('main')
+@section('content')
 <div class="wrap_countries">
 
     @foreach($areas as $area)
@@ -83,3 +85,6 @@
             <button type="submit">{{ $area['Name'] }}</button>
         </form>
     @endforeach
+</div>
+@endsection
+

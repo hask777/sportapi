@@ -15,4 +15,4 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'AreasController@index');
 Route::get('/area/{id}', 'AreasController@show')->name('show');
-Route::get('/comp', 'CompetitionController@index');
+Route::get('/league', 'CompetitionController@index');
