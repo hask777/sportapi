@@ -52,10 +52,54 @@
 </div>
 
 <div>
-    @if(!empty($_GET['current_season']) && $_GET['current_season'] != 0)
+    @if(!empty($current_season) && $current_season != 0)
         Current season: {{$current_season}}
     @endif
 </div>
 
+<h1 class="mb-1 mt-1">Round:</h1>
+
+<div>
+    Round id: {{$round_id}}
+</div>
+
+<div>
+    Round Name date: {{$round_name}}
+</div>
+
+<div>
+    Round type: {{$round_type}}
+</div>
+
+
+<div>
+    Round Name date: {{$round_start_date}}
+</div>
+
+<div>
+    Round type: {{$round_end_date}}
+</div>
+
+<div>
+    Current week: {{$round_current_week}}
+</div>
+
+<div>
+    Current round: {{$round_current_round}}
+</div>
+
 <h1 class="mb-1 mt-1">League Details:</h1>
+
+{{-- <div>
+    League id: {{$round_end_date}}
+</div>
+
+<div>
+    Current week: {{$round_current_week}}
+</div>
+
+<div>
+    Current round: {{$round_current_round}} --}}
+</div>
+
 @endsection
