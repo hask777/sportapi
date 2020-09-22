@@ -80,8 +80,9 @@ class AreasController extends Controller
         // League Details   
         $competition = Http::withHeaders(['Ocp-Apim-Subscription-Key'=>'f7b0c7419d204f299f59e646b45ca563'])->get('https://api.sportsdata.io/v3/soccer/scores/json/CompetitionDetails/' . $comp_id)->json();
 
-        // dump($competition);
+        dump($competition);
 
+            $comp_id = $competition['CompetitionId'];
             $comp_item_name = $competition['Name'];
             $comp_item_gender = $competition['Gender'];
             $comp_item_type = $competition['Type'];
@@ -91,9 +92,9 @@ class AreasController extends Controller
             //     dump($competition['CurrentSeason']);
             // }
 
-            foreach($competition['Teams'] as $comp_teams){
-                dump($competition['Teams']);
-            }
+            $comp_teams = $competition['Teams'];
+            // dump($competition['Teams']);
+
 
             // foreach($competition['Games'] as $comp_games){
             //     dump($comp_games);
@@ -125,6 +126,7 @@ class AreasController extends Controller
 
         return view('show', 
             [
+                'comp_id' => $comp_id,
                 'areasArray' => $areasArray,
                 'area_id' => $area_id,
                 'area_name' => $area_name,
@@ -147,6 +149,8 @@ class AreasController extends Controller
                 'round_end_date' => $round_end_date,
                 'round_current_week' => $round_current_week,
                 'round_current_round' => $round_current_round,
+
+                'comp_teams' => $comp_teams,
      
             ]);
     }

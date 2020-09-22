@@ -102,4 +102,9 @@
     Current round: {{$round_current_round}} --}}
 </div>
 
+<form action="{{ route('teams') }}" method="get">
+    <input type="hidden" name="comp_id" value="{{ $comp_id }}">
+    <button type="submit">Teams</button>
+</form>
+
 @endsection
